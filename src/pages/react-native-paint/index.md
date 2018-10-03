@@ -1,11 +1,11 @@
 ---
-title: Making easily themeable React Native StyleSheets
-date: "2017-07-12T17:12:33.962Z"
+title: Easily themeable React Native StyleSheets
+date: "2018-07-20T17:00:00.000Z"
 ---
 
 While applying a theme via inline styles makes theming a React Native app easy, the performance benefits provided by StyleSheets would be lost. A simple day/night theme implementation for a component using StyleSheets might look like the following.
 
-```javascript
+```jsx
 const day = StyleSheet.create({
   container: {
     backgroundColor: "white"
@@ -36,7 +36,7 @@ But this quickly becomes tedious when applied across any significant number of c
 
 That’s where [react-native-paint](https://github.com/brankeye/react-native-paint) comes in. Here’s the previous scenario re-implemented with the module.
 
-```javascript
+```jsx
 import Paint, { StylesConsumer, withStyles } from 'react-native-paint';
 
 const paint = Paint.create((theme) => ({
@@ -66,7 +66,7 @@ const Component = withStyles(paint)(({ styles }) => (
 
 All that’s needed now is to supply the theme to the StylesProvider and an id to determine which theme is currently applied. Whenever we want to change the theme, we just supply the provider with a new theme and id.
 
-```javascript
+```jsx
 import * as React from "react";
 import { Button } from "react-native";
 import { StylesProvider } from "react-native-paint";
