@@ -28,7 +28,7 @@ export default (props: Props) => {
   return (
     <Layout direction="column" justifyContent="center">
       <Helmet title={`Your Blog Name - ${title}`} />
-      <Header>{title}</Header>
+      <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </Layout>
   );

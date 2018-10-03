@@ -12,9 +12,7 @@ injectGlobal({
   },
   body: {
     width: "100%",
-    margin: 0,
-    backgroundColor: "#424242",
-    color: "#F5F5F5"
+    margin: 0
   }
 });
 
@@ -50,9 +48,9 @@ export default (props: Props) => {
   const siteTitle = getSiteTitle(props);
   const siteDescription = getSiteDescription(props);
   return (
-    <Layout direction="column" justifyContent="center">
-      <Header>{siteTitle}</Header>
-      <p>{siteDescription}</p>
+    <Layout direction="column">
+      <h1>{siteTitle}</h1>
+      <h6>{siteDescription}</h6>
       {map(post => {
         const postTitle = getPostTitle(post);
         const slug = getPostSlug(post);
