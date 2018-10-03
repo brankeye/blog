@@ -1,19 +1,20 @@
-import React from "react";
+import * as React from "react";
 import Helmet from "react-helmet";
-
-// import '../css/blog-post.css'; // make it pretty!
+import { path } from "ramda";
+import { Layout, Header } from "../components";
 
 interface Props {
   data: {
     site: {
       siteMetadata: {
-        name: string;
-        tagline: string;
+        title: string;
+        description: string;
       };
     };
     markdownRemark: {
       post: {
         frontmatter: {
+          date: string;
           title: string;
         };
       };
@@ -21,30 +22,27 @@ interface Props {
   };
 }
 
-export default function Template({ data }: Props) {
-  const { markdownRemark: post } = data;
-  const { title } = post.frontmatter;
+export default (props: Props) => {
+  const post = path(["data", "markdownRemark"], props);
+  const title = path(["frontmatter", "title"], post);
   return (
-    <div className="blog-post-container">
+    <Layout direction="column" justifyContent="center">
       <Helmet title={`Your Blog Name - ${title}`} />
-      <div className="blog-post">
-        <h1>{title}</h1>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
-      </div>
-    </div>
+      <Header>{title}</Header>
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+    </Layout>
   );
-}
+};
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query BlogPostBySlug($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
       }
     }

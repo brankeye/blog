@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    name: "Brandon Keyes",
-    tagline: "A very frigid, very northern tech blog"
+    title: "Brandon Keyes",
+    description: "A very frigid, very northern tech blog"
   },
   plugins: [
     "gatsby-plugin-typescript",
@@ -11,7 +11,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-typography",
       options: {
-        pathToConfigModule: "src/config/typography.js"
+        pathToConfigModule: "src/utils/typography.js"
       }
     },
     {
