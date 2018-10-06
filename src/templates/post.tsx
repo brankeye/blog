@@ -1,14 +1,16 @@
 import * as React from "react";
+import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import { path } from "ramda";
-import { Layout, Header } from "../components";
+import { Layout } from "../components";
 
 interface Props {
   data: {
     site: {
       siteMetadata: {
         title: string;
-        description: string;
+        author: string;
+        twitter: string;
       };
     };
     markdownRemark: {
@@ -27,7 +29,7 @@ export default (props: Props) => {
   const title = path(["frontmatter", "title"], post);
   return (
     <Layout direction="column" justifyContent="center">
-      <Helmet title={`Your Blog Name - ${title}`} />
+      <Helmet title={title} />
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </Layout>

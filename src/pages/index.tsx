@@ -2,8 +2,8 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby";
 import { injectGlobal } from "emotion";
-import { Layout, Header } from "../components";
-import { pipe, path, filter, map } from "ramda";
+import { Layout, Anchor } from "../components";
+import { pipe, path, filter, map, curry } from "ramda";
 
 injectGlobal({
   html: {
@@ -21,7 +21,8 @@ interface Props {
     site: {
       siteMetadata: {
         title: string;
-        description: string;
+        author: string;
+        twitter: string;
       };
     };
     allMarkdownRemark: {
@@ -30,13 +31,12 @@ interface Props {
   };
 }
 
-const getSiteTitle = path(["data", "site", "siteMetadata", "title"]);
-const getSiteDescription = path([
-  "data",
-  "site",
-  "siteMetadata",
-  "description"
-]);
+const getSiteMetadataProp = curry((propName, input) =>
+  path(["data", "site", "siteMetadata", propName], input)
+);
+const getTitle = getSiteMetadataProp("title");
+const getAuthor = getSiteMetadataProp("author");
+const getTwitter = getSiteMetadataProp("twitter");
 const getPosts = pipe(
   path(["data", "allMarkdownRemark", "edges"]),
   filter(post => post.node.frontmatter.title.length > 0)
@@ -45,12 +45,23 @@ const getPostTitle = path(["node", "frontmatter", "title"]);
 const getPostSlug = path(["node", "fields", "slug"]);
 
 export default (props: Props) => {
-  const siteTitle = getSiteTitle(props);
-  const siteDescription = getSiteDescription(props);
+  const title = getTitle(props);
+  const author = getAuthor(props);
+  const twitter = getTwitter(props);
   return (
     <Layout direction="column">
-      <h1>{siteTitle}</h1>
-      <h6>{siteDescription}</h6>
+      <h1>{title}</h1>
+      <p>
+        A tech blog by <b>{author}</b> in which he neither publishes nightly nor
+        plays the bugle.{" "}
+        <p>
+          You can{" "}
+          <Anchor href={twitter} noUnderline>
+            yell at him on Twitter
+          </Anchor>{" "}
+          if you'd like.
+        </p>
+      </p>
       {map(post => {
         const postTitle = getPostTitle(post);
         const slug = getPostSlug(post);
@@ -69,7 +80,8 @@ export const indexPageQuery = graphql`
     site {
       siteMetadata {
         title
-        description
+        author
+        twitter
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

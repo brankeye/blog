@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: "Brandon Keyes",
-    description: "A very frigid, very northern tech blog"
+    title: "The Nightly Bugle",
+    author: "Brandon Keyes",
+    twitter: "https://twitter.com/brandon_keyes"
   },
   plugins: [
     "gatsby-plugin-typescript",
@@ -31,7 +32,7 @@ module.exports = {
               classPrefix: "language-",
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: false,
+              showLineNumbers: true,
               noInlineHighlight: false
             }
           }
