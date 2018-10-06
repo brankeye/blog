@@ -13,7 +13,7 @@ githubTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     color
   },
   h1: {
-    borderBottom: border(1)
+    borderBottom: border(3)
   },
   h2: {
     borderBottom: border(1)

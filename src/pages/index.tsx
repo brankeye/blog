@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby";
 import { injectGlobal } from "emotion";
-import { Layout, Anchor } from "../components";
+import { Layout, Anchor, Header } from "../components";
 import { pipe, path, filter, map, curry } from "ramda";
 
 injectGlobal({
@@ -50,7 +50,7 @@ export default (props: Props) => {
   const twitter = getTwitter(props);
   return (
     <Layout direction="column">
-      <h1>{title}</h1>
+      <Header>{title}!</Header>
       <p>
         A tech blog by <b>{author}</b> in which he neither publishes nightly nor
         plays the bugle.{" "}
