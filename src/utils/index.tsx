@@ -1,2 +1,4 @@
 export { rhythm, scale } from "./typography";
-export * as theme from "./theme";
+import * as theme from "./theme";
+
+export { theme };

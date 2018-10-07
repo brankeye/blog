@@ -9,6 +9,7 @@ module.exports = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-catch-links",
+    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-typography",
       options: {
@@ -35,7 +36,9 @@ module.exports = {
               showLineNumbers: true,
               noInlineHighlight: false
             }
-          }
+          },
+          "gatsby-remark-copy-linked-files",
+          "gatsby-remark-smartypants"
         ]
       }
     }
