@@ -6,6 +6,8 @@ interface Props {
   children: any;
 }
 
-const Title = ({ children }: Props) => <h1>{children}</h1>;
+const Title = styled("h1")({
+  borderBottom: "none"
+});
 
 export default Title;

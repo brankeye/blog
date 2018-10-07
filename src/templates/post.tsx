@@ -1,7 +1,14 @@
 import * as React from "react";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import Helmet from "react-helmet";
-import { Layout, Title, Divider, Anchor, Description } from "../components";
+import {
+  Layout,
+  Title,
+  Divider,
+  Anchor,
+  Description,
+  Header
+} from "../components";
 import {
   getTitle,
   getAuthor,
@@ -33,14 +40,25 @@ interface Props {
 }
 
 export default (props: Props) => {
+  const title = getTitle(props);
   const post = path(["data", "markdownRemark"], props);
-  const title = path(["frontmatter", "title"], post);
+  const postTitle = path(["frontmatter", "title"], post);
   const author = getAuthor(props);
   const twitter = getTwitter(props);
   return (
     <Layout direction="column" justifyContent="center">
       <Helmet title={title} />
-      <Title>{title}</Title>
+      <Link
+        to="/"
+        style={{
+          textDecoration: "none",
+          boxShadow: "none",
+          color: "#fff"
+        }}
+      >
+        <Header noUnderline>{title}!</Header>
+      </Link>
+      <Title>{postTitle}</Title>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
       <Divider />
       <Description author={author} twitter={twitter} />
