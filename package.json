@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.8",
+    "date-fns": "^1.29.0",
     "emotion": "^9.2.12",
     "emotion-server": "^9.2.12",
     "gatsby": "^2.0.0",

@@ -9,6 +9,7 @@ import {
   getTwitter,
   getPosts,
   getPostTitle,
+  getPostDate,
   getPostSlug
 } from "../utils/selectors";
 import { map } from "ramda";
@@ -47,15 +48,26 @@ export default (props: Props) => {
     <Layout direction="column">
       <Header>{title}!</Header>
       <Description author={author} twitter={twitter} />
-      {map(post => {
-        const postTitle = getPostTitle(post);
-        const slug = getPostSlug(post);
-        return (
-          <Link key={slug} to={slug}>
-            {postTitle}
-          </Link>
-        );
-      }, getPosts(props))}
+      <div css={{ display: "flex", flexDirection: "column" }}>
+        {map(post => {
+          const postTitle = getPostTitle(post);
+          const postDate = getPostDate(post).toUpperCase();
+          const slug = getPostSlug(post);
+          return (
+            <div key={slug} css={{ display: "flex" }}>
+              <div
+                css={{
+                  display: "flex",
+                  flex: 0.28
+                }}
+              >
+                {postDate}
+              </div>
+              <Link to={slug}>{postTitle}</Link>
+            </div>
+          );
+        }, getPosts(props))}
+      </div>
     </Layout>
   );
 };
@@ -77,7 +89,7 @@ export const indexPageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "DD MMM YYYY")
             title
           }
         }
