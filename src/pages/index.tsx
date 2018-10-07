@@ -2,8 +2,16 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby";
 import { injectGlobal } from "emotion";
-import { Layout, Anchor, Header } from "../components";
-import { pipe, path, filter, map, curry } from "ramda";
+import { Layout, Anchor, Header, Description } from "../components";
+import {
+  getTitle,
+  getAuthor,
+  getTwitter,
+  getPosts,
+  getPostTitle,
+  getPostSlug
+} from "../utils/selectors";
+import { map } from "ramda";
 
 injectGlobal({
   html: {
@@ -31,19 +39,6 @@ interface Props {
   };
 }
 
-const getSiteMetadataProp = curry((propName, input) =>
-  path(["data", "site", "siteMetadata", propName], input)
-);
-const getTitle = getSiteMetadataProp("title");
-const getAuthor = getSiteMetadataProp("author");
-const getTwitter = getSiteMetadataProp("twitter");
-const getPosts = pipe(
-  path(["data", "allMarkdownRemark", "edges"]),
-  filter(post => post.node.frontmatter.title.length > 0)
-);
-const getPostTitle = path(["node", "frontmatter", "title"]);
-const getPostSlug = path(["node", "fields", "slug"]);
-
 export default (props: Props) => {
   const title = getTitle(props);
   const author = getAuthor(props);
@@ -51,17 +46,7 @@ export default (props: Props) => {
   return (
     <Layout direction="column">
       <Header>{title}!</Header>
-      <p>
-        A tech blog by <b>{author}</b> in which he neither publishes nightly nor
-        plays the bugle.{" "}
-        <p>
-          You can{" "}
-          <Anchor href={twitter} noUnderline>
-            yell at him on Twitter
-          </Anchor>{" "}
-          if you'd like.
-        </p>
-      </p>
+      <Description author={author} twitter={twitter} />
       {map(post => {
         const postTitle = getPostTitle(post);
         const slug = getPostSlug(post);

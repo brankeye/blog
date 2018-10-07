@@ -1,10 +1,7 @@
 import Typography from "typography";
 import githubTheme from "typography-theme-github";
+import { backgroundColor, color, brighterColor, linkColor } from "./theme";
 
-const backgroundColor = "hsla(0, 0%, 18%, 1)";
-const color = "hsla(0, 0%, 95%, 0.95)";
-const brighterColor = "hsla(0, 0%, 100%, 0.95)";
-const linkColor = "hsla(195, 90%, 60%, 0.95)";
 const border = size => `${size}px solid ${brighterColor}`;
 
 githubTheme.overrideThemeStyles = ({ rhythm }, options) => ({
@@ -26,6 +23,12 @@ githubTheme.overrideThemeStyles = ({ rhythm }, options) => ({
     textDecoration: "none"
   },
   b: {
+    color: brighterColor
+  },
+  strong: {
+    color: brighterColor
+  },
+  hr: {
     color: brighterColor
   },
   blockquote: {
