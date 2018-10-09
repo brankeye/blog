@@ -1,29 +1,8 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby";
-import { injectGlobal } from "emotion";
-import { Layout, Anchor, Header, Description } from "../components";
-import {
-  getTitle,
-  getAuthor,
-  getTwitter,
-  getPosts,
-  getPostTitle,
-  getPostDate,
-  getPostSlug
-} from "../utils/selectors";
-import { map } from "ramda";
-
-injectGlobal({
-  html: {
-    width: "100%",
-    margin: 0
-  },
-  body: {
-    width: "100%",
-    margin: 0
-  }
-});
+import { Layout, Header, Description, PostList } from "../components";
+import { getTitle, getAuthor, getTwitter, getPosts } from "../utils/selectors";
 
 interface Props {
   data: {
@@ -44,30 +23,12 @@ export default (props: Props) => {
   const title = getTitle(props);
   const author = getAuthor(props);
   const twitter = getTwitter(props);
+  const posts = getPosts(props);
   return (
     <Layout direction="column">
       <Header>{title}!</Header>
       <Description author={author} twitter={twitter} />
-      <div css={{ display: "flex", flexDirection: "column" }}>
-        {map(post => {
-          const postTitle = getPostTitle(post);
-          const postDate = getPostDate(post).toUpperCase();
-          const slug = getPostSlug(post);
-          return (
-            <div key={slug} css={{ display: "flex" }}>
-              <div
-                css={{
-                  display: "flex",
-                  flex: 0.28
-                }}
-              >
-                {postDate}
-              </div>
-              <Link to={slug}>{postTitle}</Link>
-            </div>
-          );
-        }, getPosts(props))}
-      </div>
+      <PostList posts={posts} />
     </Layout>
   );
 };
