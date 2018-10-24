@@ -32,7 +32,7 @@ const Component = ({ theme }) => {
 };
 ```
 
-But this quickly becomes tedious when applied across any significant number of components. Another minor gripe with this scenario is only one of the two StyleSheets will be in use at any given time. It would help if StyleSheets were created as a function of a theme and then created at runtime instead when the theme is changed.
+But this quickly becomes tedious when applied across any significant number of components. Another minor gripe with this scenario is only one of the two StyleSheets will be in use at any given time. It would help if StyleSheets were created as a function of a theme and then recreated only when the theme has changed.
 
 That’s where [react-native-paint](https://github.com/brankeye/react-native-paint) comes in. Here’s the previous scenario re-implemented with the module.
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "react-emotion";
 import { Link, graphql } from "gatsby";
 import Helmet from "react-helmet";
 import {
@@ -48,16 +49,9 @@ export default (props: Props) => {
   return (
     <Layout direction="column" justifyContent="center">
       <Helmet title={title} />
-      <Link
-        to="/"
-        style={{
-          textDecoration: "none",
-          boxShadow: "none",
-          color: "#fff"
-        }}
-      >
-        <Header noUnderline>{title}!</Header>
-      </Link>
+      <HeaderLink to="/">
+        <Header noUnderline>{title}</Header>
+      </HeaderLink>
       <Title>{postTitle}</Title>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
       <Divider />
@@ -65,6 +59,12 @@ export default (props: Props) => {
     </Layout>
   );
 };
+
+const HeaderLink = styled(Link)({
+  textDecoration: "none",
+  boxShadow: "none",
+  color: "#fff"
+});
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

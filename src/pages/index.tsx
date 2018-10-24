@@ -26,7 +26,7 @@ export default (props: Props) => {
   const posts = getPosts(props);
   return (
     <Layout direction="column">
-      <Header>{title}!</Header>
+      <Header>{title}</Header>
       <Description author={author} twitter={twitter} />
       <PostList posts={posts} />
     </Layout>

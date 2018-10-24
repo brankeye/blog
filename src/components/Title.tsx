@@ -8,6 +8,8 @@ interface Props {
 }
 
 const Title = styled("h1")({
+  fontSize: 16,
+  marginTop: 0,
   borderBottom: border
 });
 
