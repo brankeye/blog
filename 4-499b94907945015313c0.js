@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{154:function(e){e.exports={pages:[{componentChunkName:"component---src-pages-index-tsx",jsonName:"index",path:"/"},{componentChunkName:"component---src-templates-post-tsx",jsonName:"hello-world-8bc",path:"/hello-world/"}],dataPaths:{"dev-404-page-5f9":"920/path---dev-404-page-5-f-9-fab-NZuapzHg3X9TaN1iIixfv1W23E","hello-world-8bc":"94/path---hello-world-8-bc-b62-XM1K7PkQMFAMVWNvVHKxKNGqY",index:"827/path---index-6a9-mG6sm6mwvkpWeNj0nwDZirk80kI"}}}}]);
+//# sourceMappingURL=4-499b94907945015313c0.js.map

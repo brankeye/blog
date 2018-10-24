@@ -1,0 +1,1 @@
+{"errors":[{"message":"Variable \"$slug\" is not defined by operation \"BlogPostByPath\".","locations":[{"line":4,"column":38},{"line":1,"column":1}]},{"message":"Variable \"$path\" is never used in operation \"BlogPostByPath\".","locations":[{"line":2,"column":3}]}],"pageContext":{}}
