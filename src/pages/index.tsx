@@ -52,6 +52,7 @@ export const indexPageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMM YYYY")
             title
+            draft
           }
         }
       }
