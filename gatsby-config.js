@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: "/thenightlybugle",
   siteMetadata: {
     title: "The Nightly Bugle",
     author: "Brandon Keyes",
